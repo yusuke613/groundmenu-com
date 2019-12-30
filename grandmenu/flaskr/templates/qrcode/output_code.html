@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block global_navi %}
+
+<div class="wrapper__main--multi">
+	<center>
+          {% for i in range(tablenum) %}
+        <div class="text__subtitle">{{QR_name[i]}}</div>
+        	<img src="{{QR_list[i]}}" alt="{{QR_name[i]}}">
+          {% endfor %}
+
+     </center>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- スマホでtouchイベントの処理を早くするためのメタタグ -->
+  <meta name="viewport" content="width=device-width">
+  <title>Ground Menu.com</title>
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/scss/style.css">
+  <script src="../static/js/jquery-3.4.1.min.js"></script>
+  <script src="../static/js//jQuery UI - v1.11.3 - 2015-02-12.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+  <!-- スマホでsortableを実装するためのライブラリ -->
+  <script src="../static/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="../static/js/script.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var socket = io.connect('http://127.0.0.1:5000');
+
+    socket.on('connect', function() {
+      socket.emit("show_order","client has connected");
+    });
+
+    socket.on('server_to_client_connection', function(msg){
+      console.log(msg);
+    });
+
+    socket.on('show_order', function(order_list){
+      console.log(order_list);
+
+      // 一度消して、再度表示させる処理は、websocketが意図せず切れたときのために必要
+      $(".order_list__wrap").remove();
+      $('<div class="order_list__wrap"></div>').insertAfter(".table_activate__wrap").css("display", "none");
+
+      var len = order_list.length;
+      // 以下の処理で、order_listをHTML内に組み込む
+      for (var i=0; i<len; i++) {
+          $('<li class="menu_box--order"></li>').appendTo(".order_list__wrap").attr('id','order_id_' + (order_list[i][0]));
+          $('<span class="menu_box--order__class_2"></span>').appendTo('#order_id_' + order_list[i][0]).text(order_list[i][2]);
+          $('<span class="menu_box--order__class_3"></span>').appendTo('#order_id_' + order_list[i][0]).text(order_list[i][3]);
+          $('<span class="menu_box--order__quantity_label"></span>').appendTo('#order_id_' + order_list[i][0]).text("数量");
+          $('<span class="menu_box--order__quantity"><span>').appendTo('#order_id_' + order_list[i][0]).text(order_list[i][4]);
+          $('<span class="menu_box--order__garbage"></span>').appendTo('#order_id_' + order_list[i][0]);
+          $('<span class="menu_box--order__table"></span>').appendTo('#order_id_' + order_list[i][0]).text("Table "+order_list[i][5]);
+        console.log(order_list[i][3]);
+      };
+    });
+
+  });
+</script>
+
+  <div class="background_color">
+    <div class="wrapper__header">
+      <div class="header__menu js-header__menu icon_menu">
+        <!-- メニューの三本線に使う -->
+      <span></span>
+      <span></span>
+      <span></span>
+      </div>
+    <a href="/" class="header__title">Ground Menu.com</a>
+    <div class="header__cart">
+      <div class="header__quantity"></div>
+    </div>
+  </div>
+
+<!-- サイドメニュー -->
+    <ul class="wrapper__side">
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">オーダーシステム</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/show_menu">メニュー表登録・修正</a></li>
+        <li><a class="side_menu_2__content" href="/qrcode/generate">QRコード発行</a></li>
+        <li><a class="side_menu_2__content" href="/activate">テーブルアクティベート</a></li>
+      </ul>
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">設定</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/store_setting">店舗情報</a></li>
+        <li><a class="side_menu_2__content" href="#">従業員情報</a></li>
+      </ul>
+
+      <a class="side_menu__logout" href="/logout">ログアウト</a>
+    </ul>
+
+<!-- メインメニュー -->
+    <div class="wrapper__main">
+    <div class="picture--base"></div>
+
+  {% block global_navi %}{% endblock %}
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+@import "../setting/setting.scss";
+
+.w{
+	&--100p{
+		width:100%;
+	}
+	&--50p{
+		width:50%;
+	}
+	&--25p{
+		width:25%;
+	}
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block global_navi %}
+<!-- ここの参考イメージのclassが欲しい -->
+<img src="../../static/img/QR_base.png" width="200px">
+<!-- こんな感じのQRイメージを作成してサンプルとして表示するといい感じ(とりあえずイメージとして拾い画) -->
+
+<div class="text__subtitle w--50p">
+  テーブル数 {{tablenum}}
+</div>
+<a href="/qrcode/zip">
+<button class="form__button">
+  <span>Zip形式でダウンロード</span>
+  <span>QRコードダウンロード</span>
+</button>
+</a>
+{% endblock %}

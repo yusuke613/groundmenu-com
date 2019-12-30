@@ -1,0 +1,26 @@
+@import "../setting/setting.scss";
+
+.text_box{
+    &--small{
+        width:250px;
+        height:50px;
+        box-sizing: border-box;
+        line-height:30px;
+        display: block;
+        position: relative;
+        margin:10px auto 10px auto;
+        border:solid 2px #FFA500;
+        padding: 8px 0 8px 17px;
+        border-radius: 5px;
+        background-image: linear-gradient(to right, #fff 50%, #072A24 50%);
+        background-position: 0 0;
+        background-size: 200% auto;
+        transition: all .2s ease 0s;
+        text-decoration: none;
+
+        &:hover{
+            background-position: -100% 0;
+            color: #fff ;
+        }
+    }
+}

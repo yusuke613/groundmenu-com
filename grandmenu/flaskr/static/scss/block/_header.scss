@@ -1,0 +1,50 @@
+@import "../setting/setting.scss";
+.header{
+	&__menu{
+    	position: absolute;
+    	width: 20px;
+    	height: 20px;
+    	left: 3vw;
+	}
+	&__title{
+		position: absolute;
+  		font-size: $text-title;
+    	color: #ffffff;
+    	text-align: center;
+	}
+	&__cart{
+		display: block;
+    	position: absolute;
+    	width: 30px;
+    	height: 30px;
+		background: url('../img/cart.svg');
+    	background-size: cover;
+		right: 3vw;
+	}
+	&__quantity{
+		position: absolute;
+		width: 25px;
+    	height: 25px;
+		border-radius: 50%;
+		right: -1vh;
+		top: -5px;
+		line-height: 25px;
+		text-align: center;
+		font-size: $text-decoration;
+		background-color: $color-alart;
+		color: $text-color-main;
+	}
+}
+
+.js-header__menu--doing{
+    & span:nth-child(1) {
+        transform: translateY(9px) rotate(135deg);
+    }
+    & span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(calc(-2vw - 12.5px));
+    }
+    & span:nth-child(3) {
+        transform: translateY(-9px) rotate(-135deg);
+    }
+}

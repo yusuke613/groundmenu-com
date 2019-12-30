@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/*====================
+サイトの基本設定
+====================*/
+
+/*フォント関係*/
+$font-base: "Yu gothic", sans-serif;
+$font-serif: "Yu Mincho", serif;
+
+/*テキストの大きさ*/
+$text-logo: 100px;
+$text-icon: 30px;
+$text-title: 24px;
+$text-subtitle: 18px;
+$text-body: 16px;
+$text-decoration: 12px;
+
+/*色関係*/
+$color-main: #FFA500;
+$color-sub: #072A24;
+$color-active: #111111;
+$color-alart: #DC3B00;
+$color-doing: #BF7900;
+$color-accent: #D0F000;
+$color-interaction: #B7282E;
+$text-color-main: #ffffff;
+$text-color-sub: #999999;
+
+/*ブレイクポイント*/
+$breakpoints:(
+	sp:"screen and (max-width:599px)",
+	pc:"screen and (min-width:600px)",
+	);

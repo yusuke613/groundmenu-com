@@ -1,0 +1,13 @@
+@import "../setting/setting.scss";
+
+.vibration {
+    animation: vibration .3s  infinite;
+}
+
+@keyframes vibration {
+    0% {transform: translate(0px, 0px) rotateZ(0deg)}
+    25% {transform: translate(1px, 0px) rotateZ(0.25deg)}
+    50% {transform: translate(1px, 1px) rotateZ(0deg)}
+    75% {transform: translate(1px, 0px) rotateZ(-0.25deg)}
+    100% {transform: translate(0px, 0px) rotateZ(0deg)}
+}

@@ -1,0 +1,37 @@
+/*====================
+サイトのglobal設定
+====================*/
+* {
+    box-sizing: border-box;
+}
+
+/*リンクは基本白表示*/
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    font-family: $font-base;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select{
+    outline:none;
+    text-overflow: '';            /*テキストがオーバーフローした際に””で表示*/
+    vertical-align: auto;
+    appearance: button;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+}

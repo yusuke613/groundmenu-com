@@ -1,0 +1,138 @@
+@import "../setting/setting.scss";
+
+.wrapper{
+	// 中身を中央揃えしたくないので、@include column;は行わない
+	&__header{
+		align-items: center;
+		background-color: $color-main;
+		display: flex;
+		height: 50px;
+		position: absolute;
+		width:100vw;
+		z-index:1000;
+		justify-content: center;
+    	align-items: center;
+	}
+	&__side{
+		padding-left: 0;
+	    display: block;
+	    position: absolute;
+	    width: 0;
+	    height: calc(100vh - 50px);
+	    background: $color-main;
+	    box-shadow: rgba(100,100,100,0.5) 10px 0px 10px;
+	    z-index: 999;
+	    overflow-y: scroll;
+	    overflow-x: hidden;
+	    left: 0vw;
+	    top: 50px;
+	}
+	&__main{
+		display: flex;
+		position: absolute;
+		width: 100vw;
+		height: calc(100vh - 50px);
+		flex-flow: column nowrap;
+    	justify-content: center;
+    	align-items: center;
+    	top: 50px;
+    	&--multi{	//main要素は基本的に1カラムだが、マルチカラムにする場合に掛けるwrapper
+    		display: inline-block;
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			flex-flow: row wrap;
+    		justify-content: flex-start;
+    		overflow:scroll;
+    		font-size: 0;	//子要素間の隙間を0にするために必要
+    	}
+	}
+	&__100p{
+		@include wrapper;
+		width: 100%;
+		// height: 100%;
+		flex-flow: column nowrap;	//カラム内のコンテンツを1列で表示
+		overflow:scroll;
+		&--v_h_center{
+			@include wrapper;
+			width: 100%;
+			height: 100%;
+			flex-flow: column nowrap;	//カラム内のコンテンツを1列で表示
+			overflow:scroll;
+			align-items: center;     /*コンテンツの上下中央揃え*/
+			justify-content: center; /*左右中央揃え*/
+		}
+	}
+	&__50p{
+		@include wrapper;
+		width: 50%;
+		height: 100%;
+		flex-flow: column nowrap;
+		overflow:scroll;
+		&--v_h_center{
+			@include wrapper;
+			width: 50%;
+			height: 100%;
+			flex-flow: column nowrap;	//カラム内のコンテンツを1列で表示
+			overflow:scroll;
+			align-items: center;     /*コンテンツの上下中央揃え*/
+			justify-content: center; /*左右中央揃え*/
+		}
+	}
+	&__25p{
+		@include wrapper;
+		width: 25%;
+		height: 100%;
+		flex-flow: wrap;
+		overflow:scroll;
+		&--v_h_center{
+			@include wrapper;
+			width: 25%;
+			height: 100%;
+			flex-flow: column nowrap;	//カラム内のコンテンツを1列で表示
+			overflow:scroll;
+			align-items: center;     /*コンテンツの上下中央揃え*/
+			justify-content: center; /*左右中央揃え*/
+		}
+	}
+}
+
+.table_activate__wrap{
+	display: flex;
+	flex-flow: wrap;
+	overflow:scroll;
+}
+
+.order_list__wrap{
+	display: none;
+	flex-flow: wrap;
+	overflow:scroll;
+}
+	// &--content{
+	// 	&__100p{
+	// 		@include wrapper;
+	// 		width: 100%;
+	// 		flex-flow: row wrap;	//カラム内のコンテンツを1列で表示
+	// 		overflow:scroll;
+	// 		margin-top: 1%;
+	// 		margin-bottom: 1%;
+	// 	}
+	// 	&__50p{
+	// 		@include wrapper;
+	// 		width: 50%;
+	// 		flex-flow: row wrap;	//カラム内のコンテンツを1列で表示
+	// 		overflow:scroll;
+	// 		margin-top: 1%;
+	// 		margin-bottom: 1%;
+	// 	}
+	// 	&__25p{
+	// 		@include wrapper;
+	// 		width: 25%;
+	// 		flex-flow: row wrap;	//カラム内のコンテンツを1列で表示
+	// 		overflow:scroll;
+	// 		margin-top: 1%;
+	// 		margin-bottom: 1%;
+	// 	}
+	// }

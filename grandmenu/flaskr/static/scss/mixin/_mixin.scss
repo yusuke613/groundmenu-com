@@ -1,0 +1,33 @@
+@import "../setting/setting.scss";
+
+@mixin menu_box{
+	display: inline-block;
+  	vertical-align: middle;
+	color: $text-color-main;
+	opacity: 0.9;
+	position: relative;
+	line-height:50px;
+	flex-wrap: nowrap;
+}
+
+@mixin wrapper{
+	display: flex;
+	position: relative;
+}
+
+@mixin button{
+ 	display: inline-block;
+ 	text-decoration: none;
+ 	color: $text-color-main;
+ 	width: 50px;
+ 	height: 50px;
+  	line-height: 50px;
+ 	border-radius: 50%;
+ 	text-align: center;
+ 	overflow: hidden;
+ 	border: dashed 2px #FFF;
+ 	transition: .4s;
+ 	font-size: $text-icon;
+ 	position: fixed;
+ 	bottom: 25px;
+ }

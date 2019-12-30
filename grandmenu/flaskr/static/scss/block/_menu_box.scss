@@ -1,0 +1,318 @@
+@import "../setting/setting.scss";
+.menu_box{
+	&--class_2{
+		@include menu_box;
+		display: inline-block;
+		color: $text-color-main;
+		opacity: 0.9;
+		position: relative;
+		line-height:50px;
+		flex-flow: row wrap;
+		font-size:$text-body;
+		margin:5px 1% 5px 1%;
+		text-align: center;
+		height: 50px;
+		background-color: $color-main;
+		width: 48%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		@media screen and (max-width: 768px) {
+			width: 98%;
+		}
+	}
+	&--class_3{
+		color: $text-color-main;
+		opacity: 0.9;
+		position: relative;
+		display: inline-block;
+		margin-top:5px;
+		margin-bottom: 5px;
+		flex-flow: row wrap;
+		background-color: $color-main;
+		width: 48%;
+		align-items: center;
+		min-width: 320px;
+		@media screen and (max-width: 767px) {
+			width: 98%;
+		}
+		&__name{
+			display: inline-block;
+			width: 100%;
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: $text-body;
+			line-height: 50px;
+			border-bottom: dashed 3px $text-color-main;
+		}
+		&__price{
+			display: inline-block;
+			width: calc(100% - 215px);
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-left:0;
+			margin-right:0;
+			font-size: $text-body;
+			line-height: 50px;
+			margin-right: auto;
+		}
+		&__quantity_label{
+			width: 50px;
+			font-size: $text-body;
+			line-height:50px;
+			text-align:center;
+		}
+		&__increase{
+			width: 30px;
+			height: 30px;
+			margin-left: 5px;
+			font-size: $text-title;
+			text-align:center;
+			border-radius: 5px;
+			opacity: .75;
+			filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+			background-color: $color-sub;
+		}
+		&__quantity{
+	        width:30px;
+	        height:30px;
+	        box-sizing: border-box;
+	        display: block;
+	        position: relative;
+	        border:solid 2px #FFA500;
+	        border-radius: 5px;
+	        font-size: $text-subtitle;
+	        text-align:center;
+    	}
+		&__decrease{
+			width: 30px;
+			height: 30px;
+			font-size: $text-title;
+			margin-right: 5px;
+			text-align:center;
+			border-radius: 5px;
+			opacity: .75;
+			filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+			background-color: $color-sub;
+		}
+		&__add_to_cart{
+			text-align: center;
+			width: 30px;
+			height: 30px;
+			margin: auto 30px auto 5px;
+			background: url('../img/add_to_cart.svg');
+	    	background-size: cover;
+	    	background-repeat: no-repeat;
+	    	border-radius: 5px;
+	    	opacity: .75;
+	    	filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+	    	background-color: $color-sub;
+	    	border: solid 5px $color-sub;
+		}
+	}
+	&--order{
+		color: $text-color-main;
+		opacity: 0.9;
+		position: relative;
+		display: flex;
+		margin:45px 1%;
+		flex-flow: row wrap;
+		background-color: $color-main;
+		width: 48%;
+		align-items: center;
+		min-width: 320px;
+		@media screen and (max-width: 767px) {
+			width: 98%;
+		}
+		&__title{
+			color: $text-color-main;
+			opacity: 0.9;
+			position: relative;
+			display: block;
+			margin:5px auto 10px;
+			background-color: $color-sub;
+			width: 48%;
+			line-height:50px;
+			min-width: 320px;
+			text-align:center;
+			font-size:$text-body;
+			font-weight: bold;
+			@media screen and (max-width: 767px) {
+				width: 98%;
+			}
+		}
+		&__food{
+			color: $text-color-main;
+			opacity: 0.9;
+			position: relative;
+			display: block;
+			margin:5px auto 10px;
+			background-color: $color-sub;
+			width: 98%;
+			height: 50px;
+			line-height:50px;
+			min-width: 320px;
+			text-align:center;
+			font-size:$text-body;
+			font-weight: bold;
+			// @media screen and (max-width: 767px) {
+			// 	width: 98%;
+			// }
+		}
+		&__drink{
+			color: $text-color-main;
+			opacity: 0.9;
+			position: relative;
+			display: block;
+			margin:5px auto 10px;
+			background-color: $color-sub;
+			width: 98%;
+			height: 50px;
+			line-height:50px;
+			min-width: 320px;
+			text-align:center;
+			font-size:$text-body;
+			font-weight: bold;
+			// @media screen and (max-width: 767px) {
+			// 	width: 98%;
+			// }
+		}
+		&__class_2{
+			position: absolute;
+			top: -20px;
+			left: 0;
+			display: inline-block;
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: $text-body;
+			line-height: 25px;
+			max-width: 100%;
+			padding: 0 5px;
+			background-color: $color-sub;
+		}
+		&__class_3{
+			display: inline-block;
+			width: 100%;
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: $text-body;
+			line-height: 50px;
+			padding: 0 5px;
+			border-bottom: dashed 3px $text-color-main;
+		}
+		&__price{
+			display: inline-block;
+			width: calc(100% - 215px);
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-left:0;
+			margin-right:0;
+			font-size: $text-body;
+			line-height: 50px;
+			padding: 0 5px;
+		}
+		&__quantity_label{
+			width: 50px;
+			// margin-left: auto;
+			font-size: $text-body;
+			line-height:50px;
+			text-align:center;
+		}
+		&__quantity{
+	        width:30px;
+	        height:30px;
+	        box-sizing: border-box;
+	        display: block;
+	        position: relative;
+	        border:solid 2px #FFA500;
+	        border-radius: 5px;
+	        font-size: $text-subtitle;
+	        text-align:center;
+	        padding: 3px;
+    	}
+		&__increase{
+			width: 30px;
+			height: 30px;
+			margin-left: 5px;
+			font-size: $text-title;
+			text-align:center;
+			border-radius: 5px;
+			opacity: .75;
+			filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+			background-color: $color-sub;
+		}
+		&__decrease{
+			width: 30px;
+			height: 30px;
+			font-size: $text-title;
+			margin-right: 5px;
+			text-align:center;
+			border-radius: 5px;
+			opacity: .75;
+			filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+			background-color: $color-sub;
+		}
+		&__garbage{
+			text-align: center;
+			width: 30px;
+			height: 30px;
+			margin: auto 30px auto 5px;
+			background: url('../img/garbage.svg');
+	    	background-size: cover;
+	    	background-repeat: no-repeat;
+	    	border-radius: 5px;
+	    	opacity: .75;
+	    	filter:drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+	    	background-color: $color-sub;
+	    	border: solid 5px $color-sub;
+		}
+		&__subtotal{
+			position: absolute;
+			bottom: -20px;
+			right: 0;
+			display: inline-block;
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: $text-body;
+			line-height: 25px;
+			max-width: 100%;
+			padding: 0 5px;
+			background-color: $color-doing;
+		}
+		&__table{
+			position: absolute;
+			bottom: -20px;
+			right: 0;
+			display: inline-block;
+			text-align:center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: $text-body;
+			line-height: 25px;
+			max-width: 100%;
+			padding: 0 5px;
+			background-color: $color-doing;
+		}
+	}
+}
+
+.menu_box--class_2:hover {
+	  background: $color-active;
+}
+
+.menu_box--class_3:hover {
+	  background: $color-active;
+}

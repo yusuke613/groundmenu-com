@@ -1,0 +1,55 @@
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width">
+  <title>Ground Menu.com</title>
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/scss/style.css">
+  <script src="../static/js/jquery-3.4.1.min.js"></script>
+  <script src="../static/js//jQuery UI - v1.11.3 - 2015-02-12.js"></script>
+  <script src="../static/js/script.js"></script>
+  <title>GroundMenu.com Login</title>
+</head>
+
+<body>
+  <div class="wrapper__header">
+    <a href="" class="text__subtitle header__title">Ground Menu.com</a>
+  </div>
+
+<div class="wrapper__main">
+
+  <div class="radio_button--login">
+    <input type="radio" id="login" class="js-login radio_button--login__radio" name="login_or_registration" value="login" checked="true">
+      <label for="login">ログイン</label>
+
+    <input type="radio" id="registration" class="js-registration radio_button--login__radio" name="login_or_registration" value="registration">
+      <label for="registration">登録</label>
+  </div>
+
+  <form class="js-form--login form--login" action="/login" method="post">
+    <input class="text_box--small" type="email" name="e_mail" placeholder="ログインメールアドレス" required>
+    <input class="text_box--small" type="password" name="password" placeholder="password" required>
+    <div class="error">{{session.error}}</div>
+    <button class="form__button" type="submit">
+      <span>Login</span>
+      <span>Login</span>
+    </button>
+  </form>
+
+  <form class="js-form--registration form--registration form_registration" action="/create_account" method="post">
+    <input class="text_box--small" type="email" name="e_mail" placeholder="登録用メールアドレス" required>
+    <input class="text_box--small" type="password" name="password" placeholder="password" required>
+    <div class="error">{{session.error}}</div>
+    <button class="form__button" type="submit">
+      <span>確定</span>
+      <span>登録</span>
+    </button>
+  </form>
+    <div class="picture--base"></div>
+    </div>
+</body>
+</html>

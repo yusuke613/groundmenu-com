@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block global_navi %}
+<form class="form--store_information" action="/store_information_add" method="post">
+	<!-- valueを最後にしないと、requiredがvalueとして認識される -->
+  <input class="text_box--small" type="text" name="store_name" placeholder="店舗名" required value={{store_name[0]}} >
+  <input class="text_box--small" type="tel" name="tables" placeholder="テーブル数" required value={{store_name[1]}}>
+  <button class="form__button" type="submit" name="store_id">
+      <span>確定</span>
+      <span>登録</span>
+  </button>
+</form>
+{% endblock %}

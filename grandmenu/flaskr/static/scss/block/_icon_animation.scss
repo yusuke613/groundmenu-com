@@ -1,0 +1,55 @@
+@import "../setting/setting.scss";
+.icon_menu{
+    & span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            border-radius: 10px;    //角の丸さ
+            background-color: $text-color-main;
+            position: absolute;
+            transform: rotate(0deg);
+            transition: .4s ease-in-out;
+        }
+        & span:nth-child(1) {
+            top: 0;
+        }
+        & span:nth-child(2) {
+            top: 9px;
+        }
+        & span:nth-child(3) {
+            top: 18px;
+        }
+}
+
+.icon_pulus {
+    & span {
+        position:absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 10px;    //角の丸さ
+        background-color: $text-color-main;
+        transition: .3s ease-in-out;
+        top: 50%;
+    }
+}
+.icon_pulus {
+    & span:nth-child(1) {
+        transform: translateY(-1px) rotate(90deg);
+    }
+
+    & span:nth-child(2) {
+        transform: translateY(-1px);
+    }
+}
+
+.js-icon_pulus--doing{
+    & span:nth-child(1) {
+        transform: rotate(0deg);
+    }
+    & span:nth-child(2) {
+        opacity: 0;
+        transform: rotate(-90deg);
+    }
+}
+

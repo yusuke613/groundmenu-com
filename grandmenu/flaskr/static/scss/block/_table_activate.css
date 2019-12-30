@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/*====================
+サイトの基本設定
+====================*/
+/*フォント関係*/
+/*テキストの大きさ*/
+/*色関係*/
+/*ブレイクポイント*/
+.table_activate {
+  display: inline-block;
+  width: 23%;
+  position: relative;
+  margin: 10px 1% 10px 1%;
+  background-color: #FFA500;
+  padding: 10px; }
+  @media screen and (max-width: 768px) {
+    .table_activate {
+      width: 48%; } }
+
+.table_activate__table_number {
+  display: block;
+  width: 100%;
+  height: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 2px; }
+
+.table_activate__checkbox_aera {
+  width: 76px;
+  /*ボタンの横幅*/
+  position: relative;
+  height: 30px;
+  margin: 10px auto 20px auto;
+  display: block; }
+
+.table_activate__checkbox {
+  display: none;
+  /* チェックボックス非表示 */ }
+
+.table_activate__checkbox_label {
+  display: block;
+  /* ボックス要素に変更 */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 枠線を含んだサイズ */
+  border: 2px solid #072A24;
+  /* 枠線*/
+  border-radius: 25px;
+  /* 角丸*/
+  height: 40px;
+  /* ボタンの高さ*/
+  background: #072A24; }
+
+/* === 移動BOX（標準） ===================================== */
+.table_activate__checkbox_decoration {
+  display: block;
+  height: 36px;
+  border-radius: 50%;
+  width: 36px;
+  background: #DC3B00;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s; }
+
+/* === ON側のチェックボックスの移動BOX（ONのとき） ========= */
+.table_activate__checkbox:checked + label > .table_activate__checkbox_decoration {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  /* BOXを右に移動      */
+  background: #78bd78;
+  /* 背景色             */ }

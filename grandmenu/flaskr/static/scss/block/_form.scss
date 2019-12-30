@@ -1,0 +1,41 @@
+@import "../setting/setting.scss";
+.form--registration{
+    display: none;
+}
+
+.form__button{
+    display: inline-block;
+    position: relative;
+    // appearance: none;
+    cursor: pointer;
+    width: 250px;
+    height: 50px;
+    margin:10px auto 10px auto;
+    border-radius: 5px;
+    border-style:none;
+    >span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        transition: all .2s;
+        pointer-events: none;
+        border-radius: 5px;
+        &:nth-child(1) {
+            background-color: $color-sub;
+            color: $text-color-main;
+        }
+        &:nth-child(2) {
+            background-color: $color-main;
+            color: $text-color-main;
+            transform-origin: 50% 50% -30px;
+        }
+    }
+    &:hover span:nth-child(2) {
+        background-color: $color-sub;
+        transform: rotateX(-90deg);
+    }
+}

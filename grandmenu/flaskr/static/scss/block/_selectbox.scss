@@ -1,0 +1,51 @@
+@import "../setting/setting.scss";
+
+.selectbox > select{
+    width:50px;
+    height: 50px;
+    margin:10px auto 10px auto;
+    display: block;
+    padding: 8px 0 8px 17px;
+    letter-spacing: 2em;
+    color: $text-color-main;
+    background: $color-main;
+    overflow: hidden;
+    transition: all .2s cubic-bezier(1, 0, 0, 1);
+    border-style:none;
+    &:hover{
+        width: 250px;
+    }
+}
+
+.selectbox > select{
+    &--food{
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        margin: 10px 0 5px 1%;
+        line-height:50px;
+        color: $text-color-main;
+        font-size:$text-body;
+        text-align: center;
+        height: 50px;
+        background-color: $color-main;
+        font-weight: bold;
+        width: 49%;
+        border-top-left-radius: 10px;
+    }
+    &--drink{
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        margin: 10px 1% 5px 0;
+        line-height:50px;
+        color: $text-color-main;
+        font-size:$text-body;
+        text-align: center;
+        height: 50px;
+        background-color: $color-sub;
+        font-weight: bold;
+        width: 49%;
+        border-top-right-radius: 10px;
+    }
+}

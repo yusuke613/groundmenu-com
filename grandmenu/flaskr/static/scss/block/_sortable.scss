@@ -1,0 +1,11 @@
+@import "../setting/setting.scss";
+
+.sortable_class_2{
+	&--food{
+		width: 100%;
+	}
+
+	&_--drink{
+		width: 100%;
+	}
+}

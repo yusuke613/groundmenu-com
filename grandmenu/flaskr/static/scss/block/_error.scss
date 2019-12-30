@@ -1,0 +1,10 @@
+@import "../setting/setting.scss";
+
+.error {
+    display: block;
+    width: 100%;
+    font-size: $text-body;
+    color: $text-color-main;
+    text-align: center;
+    line-height:30px;
+}

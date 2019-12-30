@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block global_navi %}
+    {% for dbtable in dbtablelist %}
+        <!-- <a href="/{{dbtable}}"> -->
+          <button class="form_button" onclick="location.href='/dbmanagement/{{dbtable}}'">
+            <span>見る</span>
+            <span>{{dbtable}}</span>
+          </button>
+        <!-- </a> -->
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block global_navi %}
+<!-- class_2 = db.session.query(Menu.CLASS_1_ID, Menu.CLASS_2_ID, Menu.CLASS_2) -->
+<!-- class_3 = db.session.query(Menu.MENU_ID, Menu.CLASS_1_ID, Menu.CLASS_2_ID, Menu.CLASS_3_ID, Menu.CLASS_3, Menu.PRICE) -->
+
+<!-- メニュー表示部分-->
+<!-- フード中分類 -->
+<div class="wrapper__main--multi">
+  <div class="radio_button--food_drink">
+    <input type="radio" id="food" class="js-food radio_button--food_drink__radio" name="food_drink" value="food" checked="true">
+      <label for="food">Food</label>
+    <input type="radio" id="drink" class="js-drink radio_button--food_drink__radio" name="food_drink" value="drink">
+      <label for="drink">Drink</label>
+  </div>
+  <ul class="sortable_class_2--food js-sortable_class_2--food">
+    {% for class_2 in class_2 %}
+      {% if class_2[0] == 0 %}
+        <li class="menu_box--class_2" value="{{class_2[0]}}_{{class_2[1]}}" id="{{class_2[0]}},{{class_2[1]}},{{class_2[2]}}">
+          {{class_2[2]}}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+<!-- ドリンク中分類 -->
+<ul class="sortable_class_2--drink js-sortable_class_2--drink" style= display:none;>
+    {% for class_2 in class_2 %}
+      {% if class_2[0] == 1 %}
+        <li class="menu_box--class_2" value="{{class_2[0]}}_{{class_2[1]}}" id="{{class_2[0]}},{{class_2[1]}},{{class_2[2]}}">
+          {{class_2[2]}}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- lightbox__menu_boxの中に小分類を入れ、非表示にするときの子要素指定のためにliをつけている -->
+<!-- jqueryのthisを使って直接要素指定のため、display:noneを直書きしている -->
+<!-- 小分類 -->
+<form id="delete_menu" method="post" action="/delete_menu">
+  <ul class="lightbox--class_3 sortable_class_3">
+  {% for class_3 in class_3 %}
+    <li style= display:none; class="menu_box--class_3 {{class_3[1]}}_{{class_3[2]}}" id="{{class_3[0]}},{{class_3[1]}},{{class_3[2]}},{{class_3[3]}}">
+    <input type="checkbox" disabled="true" class="delete" value="{{class_3[0]}}" name="menu_id" id="menu_id_{{class_3[0]}}">
+      <label class="menu_box--class_3__name" for="menu_id_{{class_3[0]}}" value="menu_id_{{class_3[0]}}">{{class_3[4]}}</label>
+    </input>
+    <span class="menu_box--class_3__price">¥{{class_3[5]}}</span>
+    <span class="menu_box--class_3__quantity">数量</span>
+    <span class="menu_box--class_3__increase">+</span>
+    <input class="text_box--number" min="0" type="number" pattern="\d">
+    <span class="menu_box--class_3__decrease">−</span>
+    <span class="menu_box--class_3__add_to_cart"></span>
+    </li>
+  {% endfor %}
+  <div class="lightbox--class_3__back">></div>
+  </ul>
+</form>
+
+<!-- ソートの順番を保存するために必要なインプット -->
+<form id="sort_menu" method="post" action="/sort_menu">
+  <input id="class_2_sort_result_food" name="class_2_sort_result_food" class="array">
+  <input id="class_2_sort_result_drink" name="class_2_sort_result_drink" class="array">
+  <input id="class_3_sort_result" name="class_3_sort_result" class="array">
+</form>
+
+<div class="button__sortable" type="" form="">⇅</div>
+<div class="button__add">＋</div>
+<div class="button__delete">ー</div>
+
+
+
+
+<div class="lightbox--add">
+    <form id="create_menu" action="/create_menu" method="post">
+    <input class="text_box--small" type="text" name="class_3" placeholder="料理名" required>
+    <input class="text_box--small" type="number" name="price" placeholder="金額" required>
+    <div class="selectbox">
+      <select class="selectbox" name="class_1">
+        <option value="food">食べ物</option>
+        <option value="drink">飲み物</option>
+      </select>
+    </div>
+    <input class="text_box--small" type="text" name="class_2" placeholder="分類" required>
+    <button class="form__button" type="submit" id="create_menu_submit">
+      <span><a href="/add_menu">確定</a></span>
+      <span>登録</span>
+    </button>
+  </form>
+{% endblock %}

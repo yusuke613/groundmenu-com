@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- スマホでtouchイベントの処理を早くするためのメタタグ -->
+  <meta name="viewport" content="width=device-width">
+  <title>Ground Menu.com</title>
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/scss/style.css">
+  <script src="../static/js/jquery-3.4.1.min.js"></script>
+  <script src="../static/js//jQuery UI - v1.11.3 - 2015-02-12.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+  <!-- スマホでsortableを実装するためのライブラリ -->
+  <script src="../static/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="../static/js/script.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var socket = io.connect('http://127.0.0.1:5000');
+
+    socket.on('connect', function() {
+      socket.emit("cart_information","client has connected");
+    });
+
+    socket.on('server_to_client_connection', function(msg){
+      console.log(msg);
+    });
+
+    socket.on('cart_information', function(cart_information){
+      console.log(cart_information);
+      console.log(cart_information['order_list'])
+
+      // カート内の数量を変更
+      $('.header__quantity').text(cart_information['total_quantity']);
+
+      // 一度消して、再度表示させる処理は、websocketが意図せず切れたときのために必要
+      $(".lightbox--order").remove();
+      $('<div class="lightbox--order"></div>').insertAfter('.lightbox--add');
+      $('<div class="menu_box--order__food">Food</div>').appendTo('.lightbox--order');
+      $('<div class="menu_box--order__drink">drink</div>').appendTo('.lightbox--order');
+      $('<button class="form__button" id="order_submit"></button>').appendTo('.lightbox--order');
+      $('<span>確認</span>').appendTo('#order_submit');
+      $('<span>注文</span>').appendTo('#order_submit');
+      $('<div class="lightbox--order__back">></div>').appendTo('.lightbox--order');
+      $('#order_menu').wrap('<a href="/order_verification"></a>');
+
+      var len = cart_information['order_list'].length;
+      // 以下の処理で、menu_listをHTML内に組み込む
+      for (var i=0; i<len; i++) {
+          $('<li class="menu_box--order"></li>').insertAfter(".menu_box--order__" + cart_information['order_list'][i][1]).attr('id','order_id_' + (cart_information['order_list'][i][0]));
+          $('<span class="menu_box--order__class_2"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text(cart_information['order_list'][i][2]);
+          $('<span class="menu_box--order__class_3"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text(cart_information['order_list'][i][3]);
+          $('<span class="menu_box--order__price"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text("¥ "+cart_information['order_list'][i][4]);
+          $('<span class="menu_box--order__quantity_label"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text("数量");
+          $('<span class="menu_box--order__increase"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text("+");
+          $('<input class="menu_box--order__quantity" min="0" type="number" pattern="\d" disabled>').appendTo('#order_id_' + cart_information['order_list'][i][0]).val(cart_information['order_list'][i][5]);
+          $('<span class="menu_box--order__decrease"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text("-");
+          $('<span class="menu_box--order__garbage"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]);
+          $('<span class="menu_box--order__subtotal"></span>').appendTo('#order_id_' + cart_information['order_list'][i][0]).text("小計 ¥ "+cart_information['order_list'][i][4]*cart_information['order_list'][i][5]);
+        console.log(cart_information['order_list'][i][3]);
+      };
+    });
+
+    $(document).on("click", ".menu_box--class_3__add_to_cart", function () {
+      var quantity = $(this).siblings('input[type="number"]').val();
+      //正の数且つ整数の時のみカートに加える判定
+      if(quantity > 0 && Number.isInteger(quantity) == false){
+        // add_orderの変数に加える情報は menu_id, class_3, price, quantityemit('my_response',
+         var add_to_cart = {'menu_id': $(this).siblings('input[type="checkbox"]').attr("value"), 'order_quantity': $(this).siblings('input[type="number"]').val()};
+        console.log(add_to_cart);
+        socket.emit("add_to_cart", add_to_cart);
+      }else{
+      };
+    });
+
+    // add_to_cart['order_item']はORDER_ID, CLASS_1, CLASS_2, CLASS_3, PRICE, ORDER_QUANTITY]の順
+    socket.on('add_to_cart', function(add_to_cart){
+      console.log(add_to_cart)
+      $('.header__quantity').text(add_to_cart['total_quantity']);
+      if($('#order_id_' + add_to_cart['order_item'][0]).length){
+        $('#order_id_' + add_to_cart['order_item'][0]).children('input[type="number"]').val(add_to_cart['order_item'][5])
+        $('#order_id_' + add_to_cart['order_item'][0]).children(".menu_box--order__subtotal").text("小計 ¥ "+add_to_cart['order_item'][4]*add_to_cart['order_item'][5]);
+      }else{
+        $('<li class="menu_box--order"></li>').insertAfter(".menu_box--order__" + add_to_cart['order_item'][1]).attr('id','order_id_' + (add_to_cart['order_item'][0]));
+        $('<span class="menu_box--order__class_2"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text(add_to_cart['order_item'][2]);
+        $('<span class="menu_box--order__class_3"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text(add_to_cart['order_item'][3]);
+        $('<span class="menu_box--order__price"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text("¥ "+add_to_cart['order_item'][4]);
+        $('<span class="menu_box--order__quantity_label"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text("数量");
+        $('<span class="menu_box--order__increase"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text("+");
+        $('<input class="menu_box--order__quantity" min="0" type="number" pattern="\d" disabled>').appendTo('#order_id_' + add_to_cart['order_item'][0]).val(add_to_cart['order_item'][5]);
+        $('<span class="menu_box--order__decrease"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text("-");
+        $('<span class="menu_box--order__garbage"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]);
+        $('<span class="menu_box--order__subtotal"></span>').appendTo('#order_id_' + add_to_cart['order_item'][0]).text("小計 ¥ "+add_to_cart['order_item'][4]*add_to_cart['order_item'][5]);
+      };
+    });
+
+    socket.on('change_cart', function(change_cart){
+      console.log(change_cart)
+      $('.header__quantity').text(change_cart['total_quantity']);
+      var order_id = "order_id_"+change_cart['order_id']
+      var order_quantity = change_cart['order_quantity']
+      if(change_cart['order_quantity']==0){
+        $("#"+order_id).remove();
+      }else{
+        $("#"+order_id).children('input[type="number"]').val(order_quantity);
+        var subtotal = parseInt($("#"+order_id).children(".menu_box--order__price").text().replace("¥ ", ""))*order_quantity;
+        $("#"+order_id).children(".menu_box--order__subtotal").text("小計 ¥ "+subtotal)
+      };
+    });
+
+    $(document).on("click", ".menu_box--order__increase", function () {
+      var befor_quantity = $(this).siblings('input[type="number"]').val();
+      var order_quantity = parseInt(befor_quantity) + 1;
+      var order_id = $(this).parent().attr("id").replace("order_id_", "")
+      var change_cart = {'order_id': order_id, 'order_quantity': order_quantity}
+      socket.emit("change_cart", change_cart);
+    });
+
+    $(document).on("click", ".menu_box--order__decrease", function () {
+      var befor_quantity = $(this).siblings('input[type="number"]').val();
+      var order_quantity = parseInt(befor_quantity) - (1);
+      var order_id = $(this).parent().attr("id").replace("order_id_", "")
+      var change_cart = {'order_id': order_id, 'order_quantity': order_quantity}
+      socket.emit("change_cart", change_cart);
+    });
+
+    $(document).on("click", ".menu_box--order__garbage", function () {
+      var order_quantity = 0;
+      var order_id = $(this).parent().attr("id").replace("order_id_", "")
+      var change_cart = {'order_id': order_id, 'order_quantity': order_quantity}
+      // $(this).parent().remove()
+      socket.emit("change_cart", change_cart);
+    });
+
+    $(document).on("click", "#order_submit", function () {
+      console.log("オーター確定")
+      socket.emit("order_submit");
+      location.reload();
+    });
+
+  });
+</script>
+
+  <div class="background_color">
+    <div class="wrapper__header">
+      <div class="header__menu js-header__menu icon_menu">
+        <!-- メニューの三本線に使う -->
+      <span></span>
+      <span></span>
+      <span></span>
+      </div>
+    <a href="/" class="header__title">Ground Menu.com</a>
+    <div class="header__cart">
+      <div class="header__quantity"></div>
+    </div>
+  </div>
+
+<!-- サイドメニュー -->
+    <ul class="wrapper__side">
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">オーダーシステム</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/show_menu">メニュー表登録・修正</a></li>
+        <li><a class="side_menu_2__content" href="/qrcode/generate">QRコード発行</a></li>
+        <li><a class="side_menu_2__content" href="/activate">テーブルアクティベート</a></li>
+      </ul>
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">設定</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/store_setting">店舗情報</a></li>
+        <li><a class="side_menu_2__content" href="#">従業員情報</a></li>
+      </ul>
+
+      <a class="side_menu__logout" href="/logout">ログアウト</a>
+    </ul>
+
+<!-- メインメニュー -->
+    <div class="wrapper__main">
+    <div class="picture--base"></div>
+
+  {% block global_navi %}{% endblock %}
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

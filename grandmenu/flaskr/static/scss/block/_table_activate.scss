@@ -1,0 +1,64 @@
+@import "../setting/setting.scss";
+
+.table_activate{
+  display: inline-block;
+  width: 23%;
+  position: relative;
+  margin:10px 1% 10px 1%;
+  background-color: $color_main;
+  padding: 10px;
+  @media screen and (max-width: 768px) {
+      width: 48%;
+    }
+}
+
+.table_activate__table_number{
+  display: block;
+  width: 100%;
+  height: 20px;
+  font-size: $text-body;
+  color: $text-color-main;
+  text-align: center;
+  padding-top: 2px;
+}
+
+.table_activate__checkbox_aera {
+  width: 76px; /*ボタンの横幅*/
+  position: relative;
+  height: 30px;
+  margin: 10px auto 20px auto;
+  display: block;
+}
+
+.table_activate__checkbox {
+  display: none;            /* チェックボックス非表示 */
+}
+
+.table_activate__checkbox_label {
+  display: block;/* ボックス要素に変更 */
+  box-sizing: border-box;/* 枠線を含んだサイズ */
+  border: 2px solid $color-sub;/* 枠線*/
+  border-radius: 25px;/* 角丸*/
+  height: 40px;/* ボタンの高さ*/
+  background: $color-sub;
+}
+
+ /* === 移動BOX（標準） ===================================== */
+.table_activate__checkbox_decoration {
+  display:block;
+  height: 36px;
+  border-radius: 50%;
+  width: 36px;
+  background: $color-alart;
+  transition: .3s;
+}
+
+.table_activate__checkbox:checked > .table_activate__checkbox_label {
+  // background: ;/* マウス選択時の背景色を指定する */
+}
+
+ /* === ON側のチェックボックスの移動BOX（ONのとき） ========= */
+.table_activate__checkbox:checked + label > .table_activate__checkbox_decoration {
+  transform      : translateX(100%);    /* BOXを右に移動      */
+  background     : #78bd78;             /* 背景色             */
+}

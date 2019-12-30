@@ -1,0 +1,7 @@
+ /*「_」抜きの名前でインポートする
+ 変数を定義しているsetting.scssのインポートは必須事項*/
+@import "../setting/setting.scss";
+
+.array{
+	display: none;
+}

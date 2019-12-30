@@ -1,0 +1,82 @@
+@import "../setting/setting.scss";
+
+.radio_button{
+    &--login{
+        width: 250px;
+        display: flex;
+        justify-content: center; /*左右中央揃え*/
+        &__radio{
+            display: none;
+        }
+    }
+    &--food_drink{
+        width: 100%;
+        display: flex;
+        justify-content: center; /*左右中央揃え*/
+        &__radio{
+            display: none;
+            }
+    }
+    &--activate_order{
+        width: 100%;
+        display: flex;
+        justify-content: center; /*左右中央揃え*/
+        &__radio{
+            display: none;
+        }
+    }
+}
+
+.radio_button--login__radio + label {
+    line-height: 30px;
+    color: $text-color-main;
+    background-color: $color-sub;
+    width: 125px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    transition: .4s;
+}
+
+.radio_button--login__radio:checked + label {
+    background-color: $color-main;
+}
+
+.radio_button--food_drink__radio + label{
+    display: block;
+    vertical-align: middle;
+    position: relative;
+    margin: 10px 0 5px 0;
+    line-height:50px;
+    color: $text-color-main;
+    font-size:$text-body;
+    text-align: center;
+    height: 50px;
+    background-color: $color-sub;
+    font-weight: bold;
+    width: 49%;
+    border-radius: 10px 10px 0 0;
+}
+
+.radio_button--food_drink__radio:checked + label {
+    background-color: $color-main;
+}
+
+.radio_button--activate_order__radio + label{
+    display: block;
+    vertical-align: middle;
+    position: relative;
+    margin: 10px 0 5px 0;
+    line-height:50px;
+    color: $text-color-main;
+    font-size:$text-body;
+    text-align: center;
+    height: 50px;
+    background-color: $color-sub;
+    font-weight: bold;
+    width: 49%;
+    border-radius: 10px 10px 0 0;
+}
+
+.radio_button--activate_order__radio:checked + label {
+    background-color: $color-main;
+}

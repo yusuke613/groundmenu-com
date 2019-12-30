@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- スマホでtouchイベントの処理を早くするためのメタタグ -->
+  <meta name="viewport" content="width=device-width">
+  <title>Ground Menu.com</title>
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/scss/style.css">
+  <script src="../static/js/jquery-3.4.1.min.js"></script>
+  <script src="../static/js//jQuery UI - v1.11.3 - 2015-02-12.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+  <!-- スマホでsortableを実装するためのライブラリ -->
+  <script src="../static/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="../static/js/script.js"></script>
+</head>
+
+<body>
+  <div class="background_color">
+    <div class="wrapper__header">
+      <div class="header__menu js-header__menu icon_menu">
+        <!-- メニューの三本線に使う -->
+      <span></span>
+      <span></span>
+      <span></span>
+      </div>
+    <a href="/" class="header__title">Ground Menu.com</a>
+  </div>
+
+<!-- サイドメニュー -->
+    <ul class="wrapper__side">
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">オーダーシステム</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/show_menu">メニュー表登録・修正</a></li>
+        <li><a class="side_menu_2__content" href="/qrcode/generate">QRコード発行</a></li>
+        <li><a class="side_menu_2__content" href="/activate">テーブルアクティベート</a></li>
+      </ul>
+
+      <li class="side_menu_1">
+        <div class="side_menu_1__content">設定</div>
+        <div class="js-side_menu_1__opener icon_pulus">
+          <span></span>
+          <span></span>
+        </div>
+      </li>
+
+      <ul class="side_menu_2">
+        <li><a class="side_menu_2__content" href="/store_setting">店舗情報</a></li>
+        <li><a class="side_menu_2__content" href="#">従業員情報</a></li>
+      </ul>
+
+      <a class="side_menu__logout" href="/logout">ログアウト</a>
+    </ul>
+
+<!-- メインメニュー -->
+    <div class="wrapper__main">
+    <div class="picture--base"></div>
+
+  {% block global_navi %}{% endblock %}
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
